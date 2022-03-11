@@ -1,0 +1,46 @@
+{
+"Status" : "Alocado",
+"Reserva" : "154",
+"Carro" : "POH5351 Onix",
+"Cliente" : "Edson Vilela",
+"Dia de Retirada" : "21/12/2018",
+"Hora Retirada" : "11:00:00",
+"Dia Devolução" : "26/12/2018",
+"Hora Devolução" : "15:00:00"
+}
+
+{
+"Status" : "Alocado",
+"Reserva" : "211",
+"Carro" : "POE6021 Onix",
+"Cliente" : "Francisco Filho",
+"Dia de Retirada" : "23/12/2018",
+"Hora Retirada" : "11:00:00",
+"Dia Devolução" : "26/12/2018",
+"Hora Devolução" : "10:00:00"
+}
+
+AlocaçõesReservas/GET/
+
+{
+"Status" : "",
+"Reserva" : "",
+"Carro" : "",
+"Cliente" : "",
+"Dia de Retirada" : "",
+"Hora Retirada" : "",
+"Dia Devolução" : "",
+"Hora Devolução" : ""
+}
+
+FrotraVamos
+
+{
+"Carro" : "Onix Joy",
+"PlacaId" : "POH5351",
+"DisponivelHojeAté" : "30/04/2019"
+"Ano" : "2018",
+"Cor" : "Branco"
+"Renavam" : "01140875172",
+"Status" : "Disponível"
+}

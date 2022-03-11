@@ -1,0 +1,135 @@
+CREATE TABLE Alunos (
+MAT int,
+nome varchar(50),
+endereço varchar(50),
+cidade varchar(30) 
+CONSTRAINT pk_mat PRIMARY KEY (MAT)
+);
+
+CREATE TABLE Disciplinas (
+COD_DISC varchar (10),
+nome_disc varchar (40),
+carga_hor int
+CONSTRAINT pk_cod_disc PRIMARY KEY (COD_DISC)
+);
+
+CREATE TABLE Professores (
+COD_PROF int,
+nome varchar(50),
+endereço varchar(50),
+cidade varchar(30)
+CONSTRAINT pk_cod_prof PRIMARY KEY (COD_PROF)
+);
+
+CREATE Turma (
+COD_TURMA int,
+ANO int,
+horário varchar(10),
+COD_DISC1 int,
+COD_PROF1 int
+CONSTRAINT pk_cod_turma PRIMARY KEY (COD_TURMA),
+CONSTRAINT PK_ano PRIMARY KEY (ANO),
+CONSTRAINT fk_cod_disc FOREIGN KEY (COD_DISC1)
+references Disciplinas(COD_DISC),
+CONSTRAINT fk_cod_prof FOREIGN KEY (COD_PROF1)
+references Professores(COD_PROF)
+);
+
+CREATE TABLE Historico (
+MAT int,
+COD_DISC int,
+COD_TURMA int,
+COD_PROF int,
+ANO int,
+frequência varchar(5),
+nota int
+CONSTRAINT fk_mat FOREIGN KEY (MAT)
+references Alunos(MAT),
+CONSTRAINT fk_cod_disc FOREIGN KEY (COD_DISC)
+references Turma(COD_DISC),
+CONSTRAINT fk_cod_turma FOREIGN KEY (COD_DISC)
+references Turma(COD_TURMA),
+CONSTRAINT fk_cod_prof FOREIGN KEY (COD_PROF)
+references Turma(COD_TURMA),
+COSNTRAINT fk_ano FOREIGN KEY (ANO)
+references Turma(ANO)
+);
+
+Insert into Alunos values (2015010101,'JOSE DE ALENCAR','RUA DAS ALMAS','NATAL');
+Insert into Alunos values (2015010102,'JOAO JOSE','AVENIDA RUY CARNEIRO','JOAO PESSOA');
+Insert into Alunos values (2015010103,'MARIA JOAQUINA','RUA CARROSSEL','RECIFE');
+Insert into Alunos values (2015010104,'MARIA DAS DORES','RUA DAS LADEIRAS','FORTALEZA');
+Insert into Alunos values (2015010105,'JOSEU CLAUDINO','CENTRO','NATAL');
+Insert into Alunos values (2015010106,'JOSEULISSON CLAUDINO DOS SANTOS','CENTRO','NATAL');
+Insert into Disciplinas values ('BD','BANCO DE DADOS',100);
+Insert into Disciplinas values ('POO','PROGRAMAÇÃO COM ACESSO A BANDO DE DADOS',100);
+Insert into Disciplinas values ('WEB','AUTORIA WEB',50);
+Insert into Disciplinas values ('ENG','ENGENHARIA DE SOFTWARE',80);
+Insert into Professores values (212131,'NICKERSON FERREIRA','RUA MANAIRA','JOAO PESSOA')
+Insert into Professores values (122135,'ADORILSON BEZERRA','AVENIDA SALGADO FILHO','NATAL')
+Insert into Professores values (192011,'DIEGO OLIVEIRA','AVENIDA ROBERTO FREIRE','NATAL')
+Insert into Turmas values (1,2015,'11h-12h','BD',212131)
+Insert into Turmas values (2,2015,'13h-14h','BD',212131)
+Insert into Turmas values (1,2015,'08h-09h','POO',192011)
+Insert into Turmas values (1,2015,'07h-08h','WEB',192011)
+Insert into Turmas values (1,2015,'10h-11h','ENG',122135)
+Insert into Historico values (2015010101,'BD',1,212131,2015,'80%',8)
+Insert into Historico values (2015010101,'POO',1,192011,2015,'100%',6)
+Insert into Historico values (2015010101,'WEB',1,192011,2015,'75%',10)
+Insert into Historico values (2015010101,'ENG',1,122135,2015,'100%',5)
+Insert into Historico values (2015010102,'BD',1,212131,2015,'100%',10)
+Insert into Historico values (2015010102,'POO',1,192011,2015,'90%',9)
+Insert into Historico values (2015010102,'WEB',1,192011,2015,'85%',8.5)
+Insert into Historico values (2015010102,'ENG',1,122135,2015,'95%',9.5)
+Insert into Historico values (2015010103,'BD',1,212131,2015,'65%',4)
+Insert into Historico values (2015010103,'POO',1,192011,2015,'75%',5.5)
+Insert into Historico values (2015010103,'WEB',1,192011,2015,'70%',6)
+Insert into Historico values (2015010103,'ENG',1,122135,2015,'85%',7)
+Insert into Historico values (2015010104,'BD',2,212131,2015,'75%',7.5)
+Insert into Historico values (2015010104,'POO',1,192011,2015,'85%',7)
+Insert into Historico values (2015010104,'WEB',1,192011,2015,'90%',8)
+Insert into Historico values (2015010104,'ENG',1,122135,2015,'80%',6.5)
+Insert into Historico values (2015010105,'BD',2,212131,2015,'100%',9)
+Insert into Historico values (2015010105,'POO',1,192011,2015,'95%',8.5)
+Insert into Historico values (2015010105,'WEB',1,192011,2015,'95%',8.5)
+Insert into Historico values (2015010105,'ENG',1,122135,2015,'90%',10)
+Insert into Historico values (2015010106,'BD',2,212131,2015,'70%',6.5)
+Insert into Historico values (2015010106,'POO',1,192011,2015,'80%',6.5)
+Insert into Historico values (2015010106,'WEB',1,192011,2015,'95%',9.5)
+Insert into Historico values (2015010106,'ENG',1,122135,2015,'85%',7)
+
+
+
+
+
+
+
+// item a):
+
+SELECT MAT
+FROM Historico
+WHERE nota < 5;
+AND cod_DISC = 'BD'
+AND ano = 2015;
+
+// item b):
+
+SELECT MAT
+FROM Historico
+WHERE cod_DISC = 'POO'
+AND ano = 2015;
+
+SELECT nota
+FROM Historico
+WHERE cod_DISC = 'POO' 
+//metodo para somar todas as notas
+(nota WHERE MAT = 2015010101) + (nota WHERE MAT = 2015010102) + (nota WHERE MAT = 2015010103) + (nota WHERE MAT = 2015010104) + (nota WHERE MAT = 2015010105) + (nota WHERE MAT = 2015010106) / 6
+ 
+
+//item c):
+aqui sinceramente não entendi o que o senhor pediu na questão, por isso não consegui fazer!!
+
+//item d):
+
+SELECT Alunos
+WHERE cidade =! 'Natal'
